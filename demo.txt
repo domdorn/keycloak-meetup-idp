@@ -1,0 +1,23 @@
+1) service provider interface -> META-INF/services/org.keycloak.broker.social.SocialIdentityProviderFactory
+2) show dependencies in pom.xml
+3) show MeetupIdentityProviderConfig
+4) show MeetupIdentityProviderFactory
+5) show MeetupIdentityProvider
+6) explain issue with createAuthorizationUrl
+7) show doGetFederatedIdentity
+8) show extractIdentityFromProfile
+
+
+show installing:
+
+mvn package
+
+scp /Users/domdorn/work/keycloak-meetup-idp/target/meetup-idp-1.0.0-SNAPSHOT.jar domdorn@l1:~/
+
+docker cp ~domdorn/meetup-idp-1.0.0-SNAPSHOT.jar jsug_keycloak_1:/opt/keycloak/providers
+docker exec jsug_keycloak_1 /opt/keycloak/bin/kc.sh build
+docker exec -it jsug_keycloak_1 /bin/bash
+
+
+
+#docker exec jsug_keycloak_1 /bin/bash kill 1
