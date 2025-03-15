@@ -1,8 +1,8 @@
 package com.dominikdorn.keycloak.social.meetup;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.ws.rs.core.UriBuilder;
 import java.util.HashMap;
-import javax.ws.rs.core.UriBuilder;
 import org.jboss.logging.Logger;
 import org.keycloak.broker.oidc.AbstractOAuth2IdentityProvider;
 import org.keycloak.broker.oidc.mappers.AbstractJsonUserAttributeMapper;
@@ -69,10 +69,9 @@ public class MeetupIdentityProvider extends
       String memberUrl = self.get("memberUrl").asText();
       String memberPhotoUrl = self.get("memberPhotoUrl").asText();
 
-      BrokeredIdentityContext user = new BrokeredIdentityContext(userId);
+      BrokeredIdentityContext user = new BrokeredIdentityContext(userId, getConfig());
       user.setId(userId);
       user.setUsername(email);
-      user.setIdpConfig(getConfig());
       user.setIdp(this);
       user.setName(name);
       user.setEmail(email);
